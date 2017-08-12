@@ -1,5 +1,5 @@
 {
-  "name": "image-processor",
+  "name": "imgproc",
   "version": "0.1.0",
   "description": "An experimental and unpolished image processing utility for the command line",
   "main": "index.js",
