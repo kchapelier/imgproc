@@ -4,7 +4,7 @@
   "description": "An experimental and unpolished image processing utility for the command line",
   "main": "index.js",
   "bin": {
-    "imgproc": "cli.js"
+    "imgproc": "./cli.js"
   },
   "repository": {
     "type": "git",
@@ -16,6 +16,11 @@
     "cli"
   ],
   "scripts": {},
+  "files": [
+    "cli.js",
+    "index.js",
+    "src/expression-compiler.js"
+  ],
   "author": "Kevin Chapelier",
   "homepage": "https://github.com/kchapelier/imgproc",
   "license": "MIT",

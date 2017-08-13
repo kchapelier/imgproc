@@ -2,7 +2,7 @@
 
 An experimental and unpolished image processing utility for the command line.
 
-Allow to manipulate and combine images using a simple SDL limited to channel access and basic functions.
+Allow to manipulate and combine up to 9 images using a simple SDL limited to channel access and basic functions.
 
 ## Installing
 
@@ -148,6 +148,6 @@ imgproc img/trees.png img/mask.png -o outputs/screen.png --red="sub(1,mul(sub(1,
 
  * First release.
 
-# License
+## License
 
 MIT
