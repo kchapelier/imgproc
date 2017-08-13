@@ -144,6 +144,10 @@ imgproc img/trees.png img/mask.png -o outputs/screen.png --red="sub(1,mul(sub(1,
 
 ## Changelog
 
+### 0.1.1 (2017.08.13) :
+
+ * Add proper credits for example image in readme.
+
 ### 0.1.0 (2017.08.13) :
 
  * First release.
@@ -151,3 +155,7 @@ imgproc img/trees.png img/mask.png -o outputs/screen.png --red="sub(1,mul(sub(1,
 ## License
 
 MIT
+
+## Additional credits
+
+The example image is a picture licensed as CC-BY-NC-SA by **pohcao34** on Flickr ([see original](https://www.flickr.com/photos/129409923@N02/15167019544/)).
