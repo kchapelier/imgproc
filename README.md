@@ -2,7 +2,15 @@
 
 An experimental and unpolished image processing utility for the command line.
 
-Up to 9 input images can be used to generate the output.
+Allow to manipulate and combine images using a simple SDL limited to channel access and basic functions.
+
+## Installing
+
+With [npm](http://npmjs.org) do:
+
+```
+npm install imgproc -g
+```
 
 ## SDL
 
@@ -110,10 +118,36 @@ imgproc img/trees.png img/mask.png -o outputs/mask-alpha.png --red="r1" --green=
 
 ![Example](/outputs/mask-alpha.png)
 
-### Use a B/W image as a color mask
+### Combine two heightmaps in a single image
 
 ```sh
-imgproc img/trees.png img/mask.png -o outputs/mask-black.png --red="mul(r1,r2)" --green="mul(g1,g2)" --blue="mul(b1,b2)" --alpha="a1"
+imgproc img/trees.png img/mask.png -o outputs/combined.png --red="avg(r1,g1,b1)" --green="avg(r2,g2,b2)" --blue="0.5" --alpha="1"
 ```
 
-![Example](/outputs/mask-black.png)
+![Example](/outputs/combined.png)
+
+### Mix two images using the multiply blend mode
+
+```sh
+imgproc img/trees.png img/mask.png -o outputs/multiply.png --red="mul(r1,r2)" --green="mul(g1,g2)" --blue="mul(b1,b2)" --alpha="avg(a1,a2)"
+```
+
+![Example](/outputs/multiply.png)
+
+### Mix two images using the screen blend mode
+
+```sh
+imgproc img/trees.png img/mask.png -o outputs/screen.png --red="sub(1,mul(sub(1,r1),sub(1,r2)))" --green="sub(1,mul(sub(1,g1),sub(1,g2)))" --blue="sub(1,mul(sub(1,b1),sub(1,b2)))" --alpha="avg(a1,a2)"
+```
+
+![Example](/outputs/screen.png)
+
+## Changelog
+
+### 0.1.0 (2017.08.13) :
+
+ * First release.
+
+# License
+
+MIT

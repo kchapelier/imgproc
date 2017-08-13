@@ -13,9 +13,6 @@ var args = yargs.usage('Usage: image inputFiles -o outputFile [options]')
     .describe('green', 'Green component')
     .describe('blue', 'Blue component')
     .describe('alpha', 'Alpha component')
-    .describe('q', 'Quiet mode. Silence the output.')
-    .alias('q', 'quiet')
-    .boolean(['quiet'])
     .demandOption(['o'])
     .help('h')
     .alias('h', 'help')
@@ -31,9 +28,22 @@ Promise.all(promises).then(images => {
         args.alpha
     );
 
-    var inputs = images.map(img => img.bitmap.data);
+    if (images.length < 1) {
+        throw new Error('Requires at least one input image.');
+    }
 
-    var nbPixels = images[0].bitmap.width * images[0].bitmap.height;
+    var inputs = [],
+        width = images[0].bitmap.width,
+        height = images[0].bitmap.height,
+        nbPixels = width * height;
+
+    for (var i = 0; i < images.length; i++) {
+        if (images[i].bitmap.width !== width || images[i].bitmap.height !== height) {
+            throw new Error('All the input image must have the same size.');
+        }
+
+        inputs.push(images[i].bitmap.data);
+    }
 
     var output = new Uint8Array(nbPixels * 4);
 
@@ -41,7 +51,7 @@ Promise.all(promises).then(images => {
         func(inputs, output, pixel);
     }
 
-    var newImage = new Jimp(images[0].bitmap.width, images[0].bitmap.height);
+    var newImage = new Jimp(width, height);
     newImage.bitmap.data = Buffer.from(output.buffer);
 
     newImage.write(args.o);
